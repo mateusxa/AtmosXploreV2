@@ -2,7 +2,6 @@ import Sidebar from "../../components/sidebar";
 import React from "react";
 import Card from "../../components/card";
 import Flys from "../../Flys";
-import CardImage from "../../components/cardImage";
 import Link from "next/link";
 
 export default function Dashbord() {
