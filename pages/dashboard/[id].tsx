@@ -31,6 +31,7 @@ export default function Dashbord() {
         labels: Flys[parseInt(id as string) - 1].flyData.map((data) => data.time),
         datasets: [
             {
+                label: 'Temperature',
                 data: Flys[parseInt(id as string) - 1].flyData.map(data => data.temperature),
                 backgroundColor: [
                     'rgba(0, 0, 0)'
@@ -44,6 +45,7 @@ export default function Dashbord() {
         labels: Flys[parseInt(id as string) - 1].flyData.map((data) => data.time),
         datasets: [
             {
+                label: 'Pressure',
                 data: Flys[parseInt(id as string) - 1].flyData.map(data => data.pressure),
                 backgroundColor: [
                     'rgba(0, 0, 0)'
@@ -57,6 +59,7 @@ export default function Dashbord() {
         labels: Flys[parseInt(id as string) - 1].flyData.map((data) => data.time),
         datasets: [
             {
+                label: 'Height',
                 data: Flys[parseInt(id as string) - 1].flyData.map(data => data.height),
                 backgroundColor: [
                     'rgba(0, 0, 0)'
@@ -70,6 +73,7 @@ export default function Dashbord() {
         labels: Flys[parseInt(id as string) - 1].flyData.map((data) => data.time),
         datasets: [
             {
+                label: 'Luminosity',
                 data: Flys[parseInt(id as string) - 1].flyData.map(data => data.luminosity),
                 backgroundColor: [
                     'rgba(0, 0, 0)'
@@ -83,6 +87,7 @@ export default function Dashbord() {
         labels: Flys[parseInt(id as string) - 1].flyData.map((data) => data.time),
         datasets: [
             {
+                label: 'Air Quality',
                 data: Flys[parseInt(id as string) - 1].flyData.map(data => data.airQuality),
                 backgroundColor: [
                     'rgba(0, 0, 0)'
@@ -166,7 +171,7 @@ export default function Dashbord() {
                     </div>
                 </div>
             <Link href="/dashboard">
-                <button>Voltar</button>
+                <button className="text-black">Voltar</button>
             </Link>
             </div>
         </div>
