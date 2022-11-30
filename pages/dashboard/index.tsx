@@ -1,102 +1,10 @@
 import Sidebar from "../../components/sidebar";
-import React, { useState } from "react";
-import { useRouter } from "next/router";
-import { Chart as ChartJS, registerables } from 'chart.js';
-import { Line } from 'react-chartjs-2'
+import React from "react";
+import Card from "../../components/card";
 import Flys from "../../Flys";
 import Link from "next/link";
 
-ChartJS.register(...registerables);
-
-export async function getStaticPaths() {
-    return {
-      paths: [{ params: { id: '1' } }, { params: { id: '2' } },
-      { params: { id: '3' } },{ params: { id: '4' } },{ params: { id: '5' } }],
-      fallback: false, // can also be true or 'blocking'
-    }
-}
-
-export async function getStaticProps(context: any) {
-    return {
-      // Passed to the page component as props
-      props: { post: {} },
-    }
-}
-
 export default function Dashbord() {
-    const router = useRouter()
-    const { id } = router.query;
-
-    const [temperatureChartData, setTemperatureChartData] = useState({
-        labels: Flys[parseInt(id as string) - 1].flyData.map((data) => data.time),
-        datasets: [
-            {
-                label: 'Temperature',
-                data: Flys[parseInt(id as string) - 1].flyData.map(data => data.temperature),
-                backgroundColor: [
-                    'rgba(0, 0, 0)'
-                ],
-                borderWidth: 1,
-            }
-        ]
-    })
-
-    const [pressureChartData, setPressureChartData] = useState({
-        labels: Flys[parseInt(id as string) - 1].flyData.map((data) => data.time),
-        datasets: [
-            {
-                label: 'Pressure',
-                data: Flys[parseInt(id as string) - 1].flyData.map(data => data.pressure),
-                backgroundColor: [
-                    'rgba(0, 0, 0)'
-                ],
-                borderWidth: 1,
-            }
-        ]
-    })
-
-    const [heightChartData, setHeightChartData] = useState({
-        labels: Flys[parseInt(id as string) - 1].flyData.map((data) => data.time),
-        datasets: [
-            {
-                label: 'Height',
-                data: Flys[parseInt(id as string) - 1].flyData.map(data => data.height),
-                backgroundColor: [
-                    'rgba(0, 0, 0)'
-                ],
-                borderWidth: 1,
-            }
-        ]
-    })
-
-    const [luminosityChartData, setLuminosityChartData] = useState({
-        labels: Flys[parseInt(id as string) - 1].flyData.map((data) => data.time),
-        datasets: [
-            {
-                label: 'Luminosity',
-                data: Flys[parseInt(id as string) - 1].flyData.map(data => data.luminosity),
-                backgroundColor: [
-                    'rgba(0, 0, 0)'
-                ],
-                borderWidth: 1,
-            }
-        ]
-    })
-
-    const [airQualityChartData, setAirQualityChartData] = useState({
-        labels: Flys[parseInt(id as string) - 1].flyData.map((data) => data.time),
-        datasets: [
-            {
-                label: 'Air Quality',
-                data: Flys[parseInt(id as string) - 1].flyData.map(data => data.airQuality),
-                backgroundColor: [
-                    'rgba(0, 0, 0)'
-                ],
-                borderWidth: 1,
-            }
-        ]
-    })
-
     return (
         <div className="p-3 h-screen w-screen flex bg-primary-100">
             <Sidebar />
@@ -108,71 +16,36 @@ export default function Dashbord() {
                     <h1 className="">Bem vindo ao AtmosXplore!</h1>
                 </div>
 
-                <div className="grid grid-rows-2 grid-flow-col gap-4 w-44">
-                    <div>
-                        <Line className="" data={temperatureChartData}
-                            options={{
-                                plugins: {
-                                    title:{
-                                        display: true,
-                                        text: "Temperature"
-                                    } 
-                                }
-                            }}
-                        />
-                    </div>
-                    <div>
-                        <Line className="" data={pressureChartData}
-                            options={{
-                                plugins: {
-                                    title:{
-                                        display: true,
-                                        text: "Pressure"
-                                    } 
-                                }
-                            }}
-                        />
-                    </div>
-                    <div>
-                        <Line className="" data={heightChartData}
-                            options={{
-                                plugins: {
-                                    title:{
-                                        display: true,
-                                        text: "Height"
-                                    } 
-                                }
-                            }}
-                        />
-                    </div>
-                    <div>
-                        <Line className="" data={luminosityChartData}
-                            options={{
-                                plugins: {
-                                    title:{
-                                        display: true,
-                                        text: "Luminosity"
-                                    } 
-                                }
-                            }}
-                        />
-                    </div>
-                    <div>
-                        <Line className="" data={airQualityChartData}
-                            options={{
-                                plugins: {
-                                    title:{
-                                        display: true,
-                                        text: "Air Quality"
-                                    } 
-                                }
-                            }}
-                        />
-                    </div>
+                <div className="grid grid-rows-1 grid-flow-col gap-4 max-w-5xl h-48">
+                    {Flys.map(
+                        (fly, index) => {
+                            return(
+                                <Link key={index} href={`/dashboard/${index + 1}`} >
+                                    <Card key={index} title={String(fly.id)} footer={fly.data}/>
+                                </Link>
+                                
+                            )
+                        }
+                    )}
                 </div>
-            <Link href="/dashboard">
-                <button className="text-black">Voltar</button>
-            </Link>
+                <div className="my-6 flex">
+                    <div className="w-1/4 text-black">
+                        <div className="bg-white rounded-2xl p-5 drop-shadow-lg mr-6 h-fit mb-4 ">
+                            <h1 className="text-xl font-bold">Total de Voos</h1>
+                            <p className="text-5xl font-bold mt-3">{"0" + String(Flys.length)}</p>
+                        </div>
+                        <div className="bg-white rounded-2xl p-5 drop-shadow-lg mr-6 h-fit">
+                            <h1 className="text-xl font-bold">Localizacao</h1>
+                            <p className="text-4xl font-bold mt-3">Biritiba mirim</p>
+                        </div>
+                    </div>
+                    <div className="brightness-75 bg-[url('../public/sitio.png')] 
+                            bg-black/25 rounded-2xl drop-shadow-lg w-3/4 
+                            h-72 cursor-pointer ease-in-out duration-300
+                            hover:brightness-50"
+                    ></div>
+                </div>
+
             </div>
         </div>
     )
