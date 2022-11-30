@@ -98,17 +98,16 @@ export default function Dashbord() {
     })
 
     return (
-        <div className="p-3 h-screen w-screen flex bg-primary-100">
-            <Sidebar />
-            <div className="px-6 w-full">
+        <div className="p-3 h-screen w-screen flex bg-primary-100 overflow-scroll">
+            <div className="w-full">
 
                 <div className="text-primary-500 font-bold w-full h-20 
                                 align-middle text-4xl flex items-center
                                 tracking-wide">
-                    <h1 className="">Bem vindo ao AtmosXplore!</h1>
+                    <h1 className="">Dados do Voo {id}</h1>
                 </div>
 
-                <div className="grid grid-rows-2 grid-flow-col gap-4 w-44">
+                <div className="grid gap-4">
                     <div>
                         <Line className="" data={temperatureChartData}
                             options={{
