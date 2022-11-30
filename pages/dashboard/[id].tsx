@@ -106,68 +106,61 @@ export default function Dashbord() {
                                 tracking-wide">
                     <h1 className="">Dados do Voo {id}</h1>
                 </div>
-
-                <div className="grid gap-4">
-                    <div>
-                        <Line className="" data={temperatureChartData}
-                            options={{
-                                plugins: {
-                                    title:{
-                                        display: true,
-                                        text: "Temperature"
-                                    } 
-                                }
-                            }}
-                        />
-                    </div>
-                    <div>
-                        <Line className="" data={pressureChartData}
-                            options={{
-                                plugins: {
-                                    title:{
-                                        display: true,
-                                        text: "Pressure"
-                                    } 
-                                }
-                            }}
-                        />
-                    </div>
-                    <div>
-                        <Line className="" data={heightChartData}
-                            options={{
-                                plugins: {
-                                    title:{
-                                        display: true,
-                                        text: "Height"
-                                    } 
-                                }
-                            }}
-                        />
-                    </div>
-                    <div>
-                        <Line className="" data={luminosityChartData}
-                            options={{
-                                plugins: {
-                                    title:{
-                                        display: true,
-                                        text: "Luminosity"
-                                    } 
-                                }
-                            }}
-                        />
-                    </div>
-                    <div>
-                        <Line className="" data={airQualityChartData}
-                            options={{
-                                plugins: {
-                                    title:{
-                                        display: true,
-                                        text: "Air Quality"
-                                    } 
-                                }
-                            }}
-                        />
-                    </div>
+                <div className="flex">
+                <div className="w-1/2">
+                    <Line className="" data={temperatureChartData}
+                        options={{
+                            plugins: {
+                                title:{
+                                    display: true,
+                                    text: "Temperature"
+                                } 
+                            }
+                        }}
+                    />
+                    <Line className="" data={pressureChartData}
+                        options={{
+                            plugins: {
+                                title:{
+                                    display: true,
+                                    text: "Pressure"
+                                } 
+                            }
+                        }}
+                    />
+                    <Line className="" data={heightChartData}
+                        options={{
+                            plugins: {
+                                title:{
+                                    display: true,
+                                    text: "Height"
+                                } 
+                            }
+                        }}
+                    />
+                </div>
+                <div className="w-1/2">
+                    <Line className="" data={luminosityChartData}
+                        options={{
+                            plugins: {
+                                title:{
+                                    display: true,
+                                    text: "Luminosity"
+                                } 
+                            }
+                        }}
+                    />
+                    <Line className="" data={airQualityChartData}
+                        options={{
+                            plugins: {
+                                title:{
+                                    display: true,
+                                    text: "Air Quality"
+                                } 
+                            }
+                        }}
+                    />
+                </div>
                 </div>
             <Link href="/dashboard">
                 <button className="text-black">Voltar</button>
